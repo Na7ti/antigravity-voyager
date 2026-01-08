@@ -1,27 +1,20 @@
-async function getBackendMessage() {
-    try {
-        // Note: We use 'backend' hostname because this runs on the server (inside docker network)
-        const res = await fetch('http://backend:8000/', { cache: 'no-store' });
-        if (!res.ok) {
-            throw new Error('Failed to fetch data');
-        }
-        return res.json();
-    } catch (error) {
-        console.error(error);
-        return { message: "Error connecting to backend" };
-    }
-}
+"use client";
 
-export default async function Home() {
-    const data = await getBackendMessage();
+import ChatInterface from './components/ChatInterface';
+
+export default function Home() {
     return (
-        <main className="flex min-h-screen flex-col items-center justify-between p-24">
-            <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-                <div className="flex flex-col items-center">
-                    <h1 className="text-4xl font-bold mb-4">Hello World</h1>
-                    <p className="text-xl">Backend says: <span className="font-bold text-green-600">{data.message}</span></p>
-                </div>
+        <main className="flex min-h-screen flex-col items-center justify-center p-4 md:p-24 bg-gradient-to-br from-indigo-50 via-white to-cyan-50">
+            <div className="z-10 w-full max-w-5xl items-center justify-center flex flex-col mb-8">
+                <h1 className="text-4xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-500 mb-4 text-center">
+                    AI Travel Concierge
+                </h1>
+                <p className="text-slate-500 text-center max-w-lg">
+                    あなたの理想の旅を、AIがリアルタイムにリサーチして提案します。
+                </p>
             </div>
+
+            <ChatInterface />
         </main>
     )
 }

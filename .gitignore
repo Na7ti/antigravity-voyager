@@ -6,3 +6,7 @@ __pycache__/
 venv/
 .DS_Store
 *.log
+# Test artifacts
+*.json
+*.png
+!backend/screenshot.png
