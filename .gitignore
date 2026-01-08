@@ -10,3 +10,4 @@ venv/
 *.json
 *.png
 !backend/screenshot.png
+!e2e_evidence.png
